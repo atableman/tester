@@ -32,8 +32,8 @@ jobs:
     name: Job 1
     runs-on: ubuntu-latest
     steps:
-    - name: Output for Job 1
-      run: echo "This is Job 1. Will we run Job3: ${{ github.event.inputs.run-job-3 }}" 
+      - name: Output for Job 1
+        run: echo "This is Job 1. Will we run Job3: ${{ github.event.inputs.run-job-3 }}" 
 
   job-2:
     name: Job 2
