@@ -1,0 +1,59 @@
+#
+# Uses 'workflow_dispatch' type trigger to allow manual triggering of the workflow.
+#
+
+# Triggered:
+#   - to run locally using 'act' util.
+#   - to run on Github using the 'gh' CLI
+#   - to run on Github using the Github UI 
+
+# Display name
+name: Manual Triggered Workflow with workflow_dispatch trigger
+
+# Controls when the action will run. Workflow runs when manually triggered using the UI or API.
+on:
+  workflow_dispatch:
+    # demonstrates how to use pass inputs to the workflow
+    inputs:
+      # The name of the person to greet
+      name:
+        # Friendly description to be shown in the UI instead of 'name'
+        description: 'Name of you favorite shark.'
+        # Default value
+        default: 'Darnell'
+        # Input has to be provided for the workflow to run
+        required: true
+        type: string
+      quark:
+        description: "What is your favorite qusrk?"
+        required: true
+        default: "Humans"
+        type: choice
+        options:
+        - Up
+        - Down
+        - Truth
+        - Beauty
+        - Charm
+        - Strange
+      theway:
+        description: "Do you know of the 8-fold way?"
+        required: true
+        type: boolean
+
+jobs:
+  # This workflow contains a single job named hello-shark-quark
+  greet:
+    # cocntainer to use for the job
+    runs-on: 
+      - ubuntu-latest
+
+    # finally, the stuff to do in the job
+    steps:
+    
+    # Runs a single command using the runners shell
+    - name: Send greeting
+      run: |
+        echo "Hello ${{ github.event.inputs.name }}" 
+        echo "The ${{ github.event.inputs.quark }} is my favorite quark too!"
+        echo "Do you know of the 8-fold way?: ${{ github.event.inputs.theway }}"
