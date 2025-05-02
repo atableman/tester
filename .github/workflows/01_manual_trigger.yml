@@ -8,7 +8,7 @@
 #   - to run on Github using the Github UI 
 
 # Display name
-name: 'Manual Triggered Workflow with workflow_dispatch trigger'
+name: '01 - Manual Triggered Workflow'
 
 # Controls when the action will run. Workflow runs when manually triggered using the UI or API.
 on:
