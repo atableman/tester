@@ -26,4 +26,4 @@ jobs:
         with:
           context: "{{defaultContext}}:pulumi/projects/superset"
           push: true
-          tags: user/app:latest
+          tags:  nosefsdiun/darnell:latest
