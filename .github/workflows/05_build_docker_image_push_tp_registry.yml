@@ -24,4 +24,4 @@ jobs:
         with:
           context: "{{defaultContext}}:pulumi/projects/superset"
           push: true
-          tags:  nosefsdiun/darnell:latest
+          tags:  ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_REPO }}:2.0
