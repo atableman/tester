@@ -5,7 +5,7 @@
 # https://github.com/marketplace/actions/create-json
 
 
-name: 05 Build image and push to Artifact Registry
+name: '05 Build image and push to Artifact Registry'
 
 on: workflow_dispatch
 

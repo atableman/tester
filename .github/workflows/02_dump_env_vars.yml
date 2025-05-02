@@ -1,7 +1,7 @@
 # This is a basic workflow that demonstrates how to use the GitHub context and environment variables in a GitHub Actions workflow.
 #  - Noice that any secets are shown as '***' in the output.
 #  - Also shows how to pass text vriables between steps and jobs.
-name: Dump GitHub Context and Env Vars
+name: 'Dump GitHub Context and Env Vars'
 on:
   workflow_dispatch:
     # Inputs the workflow accepts.
