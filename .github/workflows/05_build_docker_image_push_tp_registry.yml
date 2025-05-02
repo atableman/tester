@@ -1,3 +1,7 @@
+# Requires secrets:
+# - DOCKERHUB_USERNAME
+# - DOCKERHUB_TOKEN
+# - DOCKERHUB_REPO
 name: Build image and push to DockerHub
 
 on: workflow_dispatch
@@ -24,4 +28,4 @@ jobs:
         with:
           context: "{{defaultContext}}:pulumi/projects/superset"
           push: true
-          tags:  ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_REPO }}:2.0
+          tags:  ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_REPO }}:latest
