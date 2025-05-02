@@ -1,0 +1,9 @@
+config:
+  gcp:project: gcp:perigon-central-data-repo
+  gcp:region: us-central1
+  gcp:zone: us-central1-a
+  perigon-superset:instanceTag: supetset
+  perigon-superset:machineType: f1-micro
+  perigon-superset:osImage: debian-11
+  perigon-superset:servicePort: "80"
+  pulumi:template: vm-gcp-python

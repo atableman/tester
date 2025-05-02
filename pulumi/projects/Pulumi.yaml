@@ -1,0 +1,11 @@
+
+name: perigon-superset
+description: VM for Superset
+runtime:
+  name: python
+  options:
+    virtualenv: venv
+config:
+  pulumi:tags:
+    value:
+      pulumi:template: vm-gcp-python

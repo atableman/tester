@@ -13,21 +13,17 @@ name: Manual Triggered Workflow with workflow_dispatch trigger
 # Controls when the action will run. Workflow runs when manually triggered using the UI or API.
 on:
   workflow_dispatch:
-    # demonstrates how to use pass inputs to the workflow
+    # pass inputs to the workflow
     inputs:
-      # The name of the person to greet
-      name:
-        # Friendly description to be shown in the UI instead of 'name'
-        description: 'Name of you favorite shark.'
-        # Default value
-        default: 'Darnell'
-        # Input has to be provided for the workflow to run
+      shark:
+        description: "Name of your favorite plush Shark"
         required: true
+        default: "Muffin"
         type: string
       quark:
-        description: "What is your favorite qusrk?"
+        description: "What is your favorite quark?"
         required: true
-        default: "Humans"
+        default: "Strange"
         type: choice
         options:
         - Up
@@ -40,7 +36,7 @@ on:
         description: "Do you know of the 8-fold way?"
         required: true
         type: boolean
-
+        default: false
 jobs:
   # This workflow contains a single job named hello-shark-quark
   greet:
@@ -54,6 +50,15 @@ jobs:
     # Runs a single command using the runners shell
     - name: Send greeting
       run: |
-        echo "Hello ${{ github.event.inputs.name }}" 
-        echo "The ${{ github.event.inputs.quark }} is my favorite quark too!"
-        echo "Do you know of the 8-fold way?: ${{ github.event.inputs.theway }}"
+        echo "Hello ${{ github.event.inputs.shark }}" 
+        echo "The ${{ github.event.inputs.quark }} Quark is my favorite quark too!"
+    - name: Eight-fold way True
+      if: github.event.inputs.theway == 'true'
+      run: |
+        echo "I know of the 8-fold way. Hail Gell-Mann!"
+        echo "${{ github.event.inputs.theway }}"
+    - name: Eight-fold way False
+      if: github.event.inputs.theway == 'false'
+      run: |
+        echo "I know nothing of the 8-fold way."
+        echo "${{ github.event.inputs.theway }}"

@@ -1,0 +1,25 @@
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: muffin
+      POSTGRES_DB: lobster
+    ports:
+      - "5432:5432"
+  superset:
+      build:
+        context: ./superset
+        dockerfile: dockerfile
+      image: perigon_superset
+      container_name: perigon_superset
+      environment:
+        - ADMIN_USERNAME=ssadmin
+        - ADMIN_FIRSTNAME=Addy
+        - ADMIN_LASTNAME=McAdmin
+        - ADMIN_EMAIL=ssadmin@superset.com
+        - ADMIN_PASSWORD=DarnellTheShark
+      ports:
+        - '8088:8088'

@@ -13,7 +13,7 @@
 #    - We add a step to job-2 that will return a non-zero exit code [ie fail]
 
 # Display name of workflow
-name: Job Execution and Flow Control
+name: Execution
 
 
 # runs when manually triggered using the UI or API.
@@ -24,17 +24,14 @@ on:
       run-job-3:
         description: "Run job #3"
         required: true
-        type: boolean
-
+        type: booleank
 jobs:
-
   job-1:
     name: Job 1
     runs-on: ubuntu-latest
     steps:
-      - name: Output for Job 1
-        run: echo "This is Job 1. Will we run Job3: ${{ github.event.inputs.run-job-3 }}" 
-
+    - name: Output for Job 1
+      run: echo "This is Job 1. Will we run Job3 ${{ github.event.inputs.run-job-3 }}" 
   job-2:
     name: Job 2
     runs-on: ubuntu-latest
