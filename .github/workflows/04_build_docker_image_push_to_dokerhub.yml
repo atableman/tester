@@ -2,7 +2,7 @@
 # - DOCKERHUB_USERNAME
 # - DOCKERHUB_TOKEN
 # - DOCKERHUB_REPO
-name: 'Build image and push to DockerHub'
+name: '04 - Build image and push to DockerHub'
 
 on: workflow_dispatch
 
