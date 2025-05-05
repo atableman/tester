@@ -55,7 +55,7 @@ jobs:
         id: request
         uses: tyrrrz/action-http-request@master
         with:
-          url: ${{ secrets.PULUMI_URL }}
+          url: "${{ secrets.PULUMI_ENDPOINT }}"
           method: POST
           headers: |
             Authorization: token ${{ secrets.PULUMI_TOKEN }}
