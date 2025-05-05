@@ -58,7 +58,7 @@ jobs:
           url: "${{ secrets.PULUMI_ENDPOINT }}"
           method: POST
           headers: |
-            Authorization: token ${{ secrets.PULUMI_TOKEN }}
+            Authorization: token ${{ secrets.PULUMI_DEPLOY_TOKEN }}
             Content-Type: application/json
           body: |
             {
