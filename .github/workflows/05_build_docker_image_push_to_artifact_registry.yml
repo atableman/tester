@@ -1,8 +1,14 @@
 # Requires secrets:
-# - DOCKERHUB_USERNAME
-# - DOCKERHUB_TOKEN
-# - DOCKERHUB_REPO
-# https://github.com/marketplace/actions/create-json
+# - GCP_SERVICE_ACCOUNT
+#   - Content of the service account key file. This is used to authenticate to Google Cloud.
+#
+# - Also a few env vars are used [that in producrtion should be set in the workflow context]:
+#   - PROJECT_ID: second-chariot-456413-s8
+#   - GAR_LOCATION: us-central1
+#   - REPOSITORY: muffin-lobster-pulumi-repo
+#   - IMAGE: main
+#
+# 
 name: '05 - Push to Artifact Registry'
 
 on: workflow_dispatch
@@ -43,3 +49,22 @@ jobs:
       - name: 'Docker push'
         run: |
           docker push "$GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:$GITHUB_SHA"
+      - name: 'Start Pulumi Build'
+        id: request
+        use: tyrrrz/action-http-request@master
+        with:
+          url: ${{ secrets.PLUMI_URL }}
+          method: POST
+          headers: |
+            Authorization: token ${{ secrets.PLUMI_TOKEN }}
+            Content-Type: application/json
+          body: |
+            {
+              "operation": "refresh"
+            }
+          retry-count: 3
+          retry-interval: 500
+      - name: Print outputs
+        run: |
+          echo "Status code: ${{ steps.request.outputs.status }}"
+          echo "Response headers: ${{ steps.request.outputs.headers }}"
